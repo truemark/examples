@@ -26,6 +26,7 @@ The stack deploys:
 - **AWS CLI**: Configured with appropriate credentials and permissions
 - **CDK CLI**: Version 2.x
 - **TypeScript**: For development
+- **test-vault vault**: Required prerequisite in the `us-east-2` region
 
 ## Environment Variables
 
