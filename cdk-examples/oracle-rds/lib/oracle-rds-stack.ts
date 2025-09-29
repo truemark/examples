@@ -31,7 +31,7 @@ export class OracleRdsStack extends cdk.Stack {
             vpc,
             allowAllOutbound: true,
             description: `RDS SG for ${dbName}`,
-            //securityGroupName: `${dbName}`,
+            // securityGroupName: `${dbName}`,
         });
         cdk.Tags.of(dbSg).add('Name', `${dbName}`);
         const corpCidr = ec2.Peer.ipv4('10.0.0.0/8');
