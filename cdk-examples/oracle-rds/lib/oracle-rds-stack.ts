@@ -9,7 +9,7 @@ export class OracleRdsStack extends cdk.Stack {
         super(scope, id, { ...props, env: { ...props?.env, region: 'us-west-2' } });
 
         // ---- Config ----
-        const dbName = 'oracle3';
+        const dbName = 'oracle4';
         const allocatedStorageGiB = 300;
         const maxAllocatedStorageGiB = 1000; // enables autoscaling
         const oracleFull = rds.OracleEngineVersion.of(
@@ -121,6 +121,11 @@ export class OracleRdsStack extends cdk.Stack {
         new cdk.CfnOutput(this, 'SecurityGroupId', { value: dbSg.securityGroupId });
         new cdk.CfnOutput(this, 'DbEndpoint', { value: database.instanceEndpoint.hostname });
         new cdk.CfnOutput(this, 'S3ArchiveRoleArn', { value: archiveRole.roleArn });
+        new cdk.CfnOutput(this, 'DbSecurityGroupIdExport', {
+            value: dbSg.securityGroupId,
+            exportName: 'OracleDbSgId',   // <— export
+        });
+
 
         cdk.Tags.of(this).add('automation:id', 'oracle');
     }
